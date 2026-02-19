@@ -57,6 +57,7 @@ int main()
    form_iterator chapter = cgi.getElement("chapter");
    form_iterator verse = cgi.getElement("verse");
    form_iterator nv = cgi.getElement("num_verse");
+   form_iterator ver = cgi.getElement("version");
 
    // Convert and check input data
    bool validInput = false;
@@ -121,8 +122,23 @@ int main()
       }
       else
       {
-         // Create Bible object pointing to the Bible text file on the server
-         Bible bible("/home/class/csc3004/Bibles/web-complete");
+         // Determine which Bible version file to use based on user selection
+      string bibleFile = "/home/class/csc3004/Bibles/web-complete";  // default
+      if (ver != cgi.getElements().end())
+      {
+         string version = **ver;
+         if (version == "kjv")
+            bibleFile = "/home/class/csc3004/Bibles/kjv-complete";
+         else if (version == "dby")
+            bibleFile = "/home/class/csc3004/Bibles/dby-complete";
+         else if (version == "ylt")
+            bibleFile = "/home/class/csc3004/Bibles/ylt-complete";
+         else if (version == "webster")
+            bibleFile = "/home/class/csc3004/Bibles/webster-complete";
+      }
+
+      // Create Bible object pointing to the selected Bible version file
+      Bible bible(bibleFile);
 
          // Create a Ref from the book number, chapter, and verse
          Ref ref(bookNum, chapterNum, verseNum);

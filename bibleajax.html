@@ -65,7 +65,8 @@
                   + "&book=" + document.getElementById('book').value
                   + "&chapter=" + document.getElementById('chapter').value
                   + "&verse=" + document.getElementById('verse').value
-                  + "&num_verse=" + document.getElementById('num_verse').value,
+                  + "&num_verse=" + document.getElementById('num_verse').value
+             + "&version=" + document.getElementById('version').value,
                   true); // true indicates asynchronous request
    
      // callback function
@@ -185,6 +186,18 @@
   <tr>
   <td align=right valign=top>Number of verses</td>
   <td align=left valign=top><input name="num_verse" type="text" maxlength=3 id=num_verse></td>
+  </tr>
+<tr>
+  <td align=right valign=top>Bible Version</td>
+  <td align=left valign=top>
+  <select name="version" id=version>
+  <option value="web">World English Bible (WEB)
+  <option value="kjv">King James Version (KJV)
+  <option value="dby">Darby Translation
+  <option value="ylt">Young's Literal Translation
+  <option value="webster">Webster Translation
+  </select>
+  </td>
   </tr>
 </table>
 
